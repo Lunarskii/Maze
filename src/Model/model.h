@@ -1,5 +1,5 @@
-#ifndef PROJECT_MODEL_H
-#define PROJECT_MODEL_H
+#ifndef A1_MAZE_MODEL_MODEL_H
+#define A1_MAZE_MODEL_MODEL_H
 
 #include <vector>
 #include <fstream>
@@ -7,18 +7,20 @@
 
 #include <iostream>
 
-#include "../matrix/logic/s21_matrix.h"
-
 class Model {
 public:
-    Model() = default;
+    using value_type = std::vector<std::vector<bool>>;
+
+    static Model& GetInstance();
     void UploadMazeFromFile(std::string file_name);
     void PutALine(std::vector<std::vector<bool>>& vec, std::string& line);
     void printMaze();
+    value_type& GetRightWalls();
+    value_type& GetBottomWalls();
 private:
-    std::vector<std::vector<bool>> right_walls_;
-    std::vector<std::vector<bool>> bottom_walls_;
+    value_type right_walls_;
+    value_type bottom_walls_;
 };
 
 
-#endif //  PROJECT_MODEL_H
+#endif //  A1_MAZE_MODEL_MODEL_H
