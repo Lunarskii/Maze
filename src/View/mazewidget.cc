@@ -25,13 +25,11 @@ void MazeWidget::HandleSolution(value_type* right_walls, value_type* bottom_wall
 
 void MazeWidget::paintEvent(QPaintEvent*)
 {
-    // заменить на дополнительный виджет, чтобы не размещать в окне
     painter->begin(this);
 
-    painter->setPen(Qt::black); // Цвет стен
+    painter->setPen(QPen(Qt::black, 2)); // Цвет стен и толщина стен
     painter->setBrush(Qt::white); // Цвет клеток
-    painter->drawRect(0, 0, 500, 500); // 0 0 - начальные координаты виджета, надо запихать в отдельный
-    // заменить число 500 на константную переменную размера виджета лабиринта
+    painter->drawRect(ui->mazeWidget->x(), ui->mazeWidget->y(), ui->mazeWidget->width(), ui->mazeWidget->height());
 
 
     if (right_walls_ != nullptr)
@@ -45,8 +43,8 @@ void MazeWidget::paintEvent(QPaintEvent*)
 
 void MazeWidget::PaintMaze_()
 {
-    int cell_width = 500 / right_walls_[0].size();
-    int cell_height = 500 / right_walls_->size(); // заменить число 500 на константную переменную размера виджета лабиринта
+    double cell_width = static_cast<double>(ui->mazeWidget->width()) / (*right_walls_)[0].size();
+    double cell_height = static_cast<double>(ui->mazeWidget->height()) / right_walls_->size();
 
     for (int i = 0; i != right_walls_->size(); ++i)
     {
@@ -54,9 +52,9 @@ void MazeWidget::PaintMaze_()
         {
             if ((*right_walls_)[i][j] == 1)
             {
-                int x = (j + 1) * cell_width;
-                int y = i * cell_height;
-                painter->drawLine(x, y, x, y + cell_height);
+                double x = (j + 1) * cell_width + ui->mazeWidget->x();
+                double y = i * cell_height + ui->mazeWidget->y();
+                painter->drawLine(QPointF(x, y), QPointF(x, y + cell_height));
             }
         }
     }
@@ -67,9 +65,9 @@ void MazeWidget::PaintMaze_()
         {
             if ((*bottom_walls_)[i][j] == 1)
             {
-                int x = j * cell_width;
-                int y = (i + 1) * cell_height;
-                painter->drawLine(x, y, x + cell_width, y);
+                double x = j * cell_width + ui->mazeWidget->x();
+                double y = (i + 1) * cell_height + ui->mazeWidget->y();
+                painter->drawLine(QPointF(x, y), QPointF(x + cell_width, y));
             }
         }
     }
@@ -77,10 +75,25 @@ void MazeWidget::PaintMaze_()
 
 void MazeWidget::on_uploadMazeModel_clicked()
 {
-    QString file_path = QFileDialog::getOpenFileName(this, ("Select Maze"), "../models/", "Text Files (*.txt)");
+    QString file_path = QFileDialog::getOpenFileName(this, ("Select Maze"), "../mazes/", "Text Files (*.txt)");
 
     if (file_path != "")
     {
         emit SetModel(file_path);
     }
 }
+
+void MazeWidget::on_generateMaze_clicked()
+{
+    int rows = ui->rows_line->text().toInt();
+    int cols = ui->cols_line->text().toInt();
+    emit SetDimension(rows, cols);
+}
+
+
+void MazeWidget::on_pushButton_clicked()
+{
+    QString file_path = QFileDialog::getSaveFileName(this, "Save Maze", "../mazes/", "Text Files (*.txt)");
+    emit SaveMazeToFile(file_path);
+}
+

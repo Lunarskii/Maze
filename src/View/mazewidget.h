@@ -26,10 +26,14 @@ public:
 
 signals:
     void SetModel(QString file_name);
+    void SetDimension(int rows, int cols);
+    void SaveMazeToFile(QString file_name);
 
 private slots:
     void HandleSolution(value_type* right_walls, value_type* bottom_walls);
     void on_uploadMazeModel_clicked();
+    void on_generateMaze_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::MazeWidget *ui;
