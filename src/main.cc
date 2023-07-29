@@ -1,13 +1,11 @@
-#include "Controller/controller.h"
 #include <QApplication>
 
+#include "view/mainwindow.h"
+
 int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    MazeWidget w;
-    Controller controller(&w);
-
-    QObject::connect(&controller, SIGNAL(SolutionForMazeReady(value_type*, value_type*)), &w, SLOT(HandleSolution(value_type*, value_type*)));
-
-    w.show();
-    return app.exec();
+  QApplication a(argc, argv);
+  MainWindow w;
+  w.setWindowTitle("Maze");
+  w.show();
+  return a.exec();
 }
