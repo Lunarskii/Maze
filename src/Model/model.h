@@ -1,50 +1,37 @@
 #ifndef A1_MAZE_MODEL_MODEL_H
 #define A1_MAZE_MODEL_MODEL_H
 
-#include <vector>
-#include <fstream>
-#include <sstream>
-#include <random> // BoolRandom()
+#include "Maze/maze.h"
+#include "Cave/cave.h"
+#include <QObject>
 
-#include <iostream>
+class Model : public QObject
+{
+    Q_OBJECT
 
-class Model {
 public:
-    using value_type = std::vector<std::vector<bool>>;
-
+    using maze_type = Maze::maze_type;
+    using cave_type = Maze::maze_type; // изменить типы данных
     static Model& GetInstance();
-    void UploadMazeFromFile(std::string file_name);
-    void PutALine(std::vector<std::vector<bool>>& vec, std::string& line);
-    void printMaze();
-    value_type& GetRightWalls();
-    value_type& GetBottomWalls();
 
-    void GeneratePerfectMaze(unsigned int rows, unsigned int cols);
-    void SaveToFile(std::string file_name);
+signals:
+    void MazeReady(maze_type* right_walls, maze_type* bottom_walls);
+    void MazeIsSaved();
+    void CaveReady(cave_type* cave_data);
+    void GenerationIsFinished();
 
+public slots:
+    void UploadMaze(std::string directory);
+    void GenerateMaze(unsigned int rows, unsigned int cols);
+    void SaveMaze(std::string directory);
+    void UploadCave(std::string directory, int limit_birth, int limit_death);
+    void GenerateCave(int limit_birth, int limit_death, int init_chance, int size);
+    void NextGeneration();
+    
 private:
-    value_type right_walls_;
-    value_type bottom_walls_;
-    std::vector<int> side_line_;
-    unsigned int rows_;
-    unsigned int cols_;
-    int counter_{1};
-
-    void WriteDataToFile_(std::ofstream& file, value_type& vec);
-    void InitializingStartingValues_();
-    void CreateFirstRow_();
-    void AssignUniqueSet_();
-    bool RandomBool_();
-    void MergeSet_(int mutable_set, int set_number);
-    int GetNumberOfCells_(int set_number);
-    void CheckedBottomWalls_(int row);
-    int CalculateBottomWalls_(int element, int row);
-    void PreparatingNewLine_(int row);
-    void AddingEndLine_();
-    void CheckedEndLine_();
-    void AddingRightWalls_(int row);
-    void AddingBottomWalls(int row);
+    Maze* maze_ { &Maze::GetInstance() };
+    Cave* cave_ { &Cave::GetInstance() };
 };
 
-
 #endif //  A1_MAZE_MODEL_MODEL_H
+
