@@ -1,11 +1,11 @@
-#include "mazewidget.h"
+#include "mainwindow.h"
 
-void MazeWidget::dragEnterEvent(QDragEnterEvent *event) 
+void MainWindow::dragEnterEvent(QDragEnterEvent *event) 
 {
     if (event->mimeData()->hasUrls()) event->acceptProposedAction();
 }
 
-void MazeWidget::dropEvent(QDropEvent *event) 
+void MainWindow::dropEvent(QDropEvent *event) 
 {
     const QMimeData *mime_data = event->mimeData();
 
@@ -13,8 +13,7 @@ void MazeWidget::dropEvent(QDropEvent *event)
         QList<QUrl> url_list = mime_data->urls();
         QString file_path = url_list[0].toLocalFile();
 
-        emit SetModel(file_path);
-
+        emit UploadMaze(file_path.toStdString());
         event->acceptProposedAction();
     }
 }
