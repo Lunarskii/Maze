@@ -14,7 +14,7 @@ void Model::UploadMaze(std::string directory)
 
 void Model::GenerateMaze(unsigned int rows, unsigned int cols)
 {
-    maze_->GeneratePerfectMaze(rows, cols);
+    maze_->GenerateMaze(rows, cols);
     emit MazeReady(&maze_->GetRightWalls(), &maze_->GetBottomWalls());
 }
 
