@@ -18,6 +18,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(SOURCE_DIRS
         Model/Maze
         Model/Cave
+        Model/FileReader
         Model/
         Controller/
         View/MazePainter
