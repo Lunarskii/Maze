@@ -8,7 +8,8 @@
 #include <fstream>
 #include <sstream>
 #include <random> // BoolRandom()
-#include "generate.h"
+#include "../FileReader/filereader.h"
+#include "maze_generator.h"
 
 #include <iostream>
 
@@ -19,7 +20,7 @@ public:
 
     static Maze& GetInstance();
     void UploadMazeFromFile(std::string file_name);
-    void GeneratePerfectMaze(unsigned int rows, unsigned int cols);
+    void GenerateMaze(unsigned int rows, unsigned int cols);
     void SaveToFile(std::string file_name);
     maze_type& GetRightWalls();
     maze_type& GetBottomWalls();
@@ -27,30 +28,10 @@ public:
 private:
     maze_type right_walls_;
     maze_type bottom_walls_;
-    std::vector<int> side_line_;
     unsigned int rows_;
     unsigned int cols_;
-    int counter_{1};
 
-    void PutALine_(maze_type& vec, std::string& line);
     void WriteDataToFile_(std::ofstream& file, maze_type& vec);
-    void InitializingStartingValues_();
-    void CreateFirstRow_();
-    void AssignUniqueSet_();
-    bool RandomBool_();
-    void MergeSet_(int mutable_set, int set_number);
-    int GetNumberOfCells_(int set_number);
-    void CheckedBottomWalls_(int row);
-    int CalculateBottomWalls_(int element, int row);
-    void PreparatingNewLine_(int row);
-    void AddingEndLine_();
-    void CheckedEndLine_();
-    void AddingRightWalls_(int row);
-    void AddingBottomWalls(int row);
-
-
-
-    void printMaze();
 };
 
 
