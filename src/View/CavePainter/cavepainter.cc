@@ -31,11 +31,11 @@ void CavePainter::paintEvent(QPaintEvent*)
             {
                 if (IsAliveCell_((*cave_data_)[row][col])) 
                 {
-                    painter.fillRect(col * cell_height, row * cell_width, cell_width, cell_height, Qt::black);
+                    painter.fillRect(col * cell_width, row * cell_height, cell_width, cell_height, Qt::black);
                 } 
                 else if (!IsAliveCell_((*cave_data_)[row][col])) 
                 {
-                    painter.fillRect(col * cell_height, row * cell_width, cell_width, cell_height, Qt::white);
+                    painter.fillRect(col * cell_width, row * cell_height, cell_width, cell_height, Qt::white);
                 }
             }
         }
