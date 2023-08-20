@@ -28,8 +28,8 @@ private:
     inline bool WallExists_(bool cell);
     void paintEvent(QPaintEvent*) override;
     void PaintMaze_();
-    void PaintCells_();
-    void PaintCell_(int& cell_x, int& cell_y);
+    void PaintSquares_();
+    void PaintSquare_(QPoint& position);
     void GetCellNumbers_(QPoint& position, int& x, int& y);
     bool ClickInWidget_(QPoint position);
     bool ClickInSameCell_(QPoint& p1, QPoint& p2);
