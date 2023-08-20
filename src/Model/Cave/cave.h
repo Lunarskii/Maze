@@ -27,14 +27,14 @@ public:
     void setLimitBirth(int value);
     void setLimitDeath(int value);
     void setInitialChance(int value);
+    void setSize(int value);
 
-    int isCorrect();
     std::vector<std::vector<bool>>& GetCaveData();
 
     bool HasNextGeneration();
     void CellularAutomation();
     void UploadCaveFromFile(const std::string& filename);
-    void ShuffleCaveData();
+    void GenerateRandomCave();
 
 private:
     int CountAliveNeighbors(int row, int col);
@@ -43,7 +43,6 @@ private:
     std::vector<std::vector<bool>> cave_data_ {};
     struct cellInfo cell_info {};
     int rows {}, cols {};
-    bool is_correct {};
 };
 
 #endif  // A1_MAZE_MODEL_CAVE_CAVE_H_

@@ -6,25 +6,25 @@ typename Cave::Cave& Cave::GetInstance()
   return instance;
 }
 
-void Cave::ShuffleCaveData() {
-    std::vector<int> flatMatrix;
-    for (const auto& row : cave_data_) 
-    {
-        flatMatrix.insert(flatMatrix.end(), row.begin(), row.end());
-    }
+void Cave::GenerateRandomCave() {
+  if (cave_data_.size() != rows) {
+    cave_data_.resize(rows, std::vector<bool>(cols));
+  }
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::shuffle(flatMatrix.begin(), flatMatrix.end(), gen);
+  std::vector<bool> flatMatrix(rows * cols);
+  int alive_cell_count = cell_info.initial_chance / 100.0 * rows * cols;
+  for (int i = 0; i < alive_cell_count; ++i) flatMatrix[i] = ALIVECELL;
 
-    for (auto& row : cave_data_) 
-    {
-        for (auto value : row) 
-        {
-            value = flatMatrix.front();
-            flatMatrix.erase(flatMatrix.begin());
-        }
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::shuffle(flatMatrix.begin(), flatMatrix.end(), gen);
+
+  int k = 0;
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < cols; ++j) {
+      cave_data_[i][j] = flatMatrix[k++];
     }
+  }
 }
 
 void Cave::setLimitBirth(int value) 
@@ -40,6 +40,10 @@ void Cave::setLimitDeath(int value)
 void Cave::setInitialChance(int value) 
 {
     cell_info.initial_chance = (value >= 0 && value <= 100) ? value : 0;
+}
+
+void Cave::setSize(int value) {
+  rows = cols = value;
 }
 
 void Cave::UploadCaveFromFile(const std::string& filename) 
@@ -75,8 +79,6 @@ void Cave::UploadCaveFromFile(const std::string& filename)
 
     file.close();
 }
-
-int Cave::isCorrect() { return is_correct; }
 
 std::vector<std::vector<bool>>& Cave::GetCaveData() { return cave_data_; }
 
