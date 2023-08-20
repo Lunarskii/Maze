@@ -23,10 +23,6 @@ struct cellInfo {
 class Cave {
 public:
     static Cave& GetInstance();
-    // Cave();
-    // Cave(Cave& other);
-    // Cave(int width, int height, struct cellInfo cell_info);
-    // Cave(const std::string& filename, struct cellInfo cell_info);
 
     void setLimitBirth(int value);
     void setLimitDeath(int value);

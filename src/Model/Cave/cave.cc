@@ -6,47 +6,6 @@ typename Cave::Cave& Cave::GetInstance()
   return instance;
 }
 
-// Cave::Cave() = default;
-
-// Cave::Cave(const std::string& filename, struct cellInfo cell_info) {
-//   setLimitBirth(cell_info.limit_birth);
-//   setLimitDeath(cell_info.limit_death);
-//   setInitialChance(cell_info.initial_chance);
-//   is_correct = LoadCaveFromFile(filename);
-// }
-
-// Cave::Cave(int width, int height, struct cellInfo cell_info) {
-//   if (width > 500 || width < 1) width = 100;
-//   if (height > 500 || height < 1) height = 100;
-
-//   is_correct = true;
-//   rows = width;
-//   cols = height;
-//   cave_data.resize(rows, std::vector<bool>(cols));
-
-//   int cell_count = cell_info.initial_chance / 100.0 * (rows * cols);
-
-//   for (int i = 0; i < rows; i++) {
-//     for (int j = 0; j < cols; j++) {
-//       if (cell_count > 0) {
-//         cave_data[i][j] = ALIVECELL;
-//         cell_count--;
-//       }
-//       else cave_data[i][j] = DEATHCELL;
-//     }
-//   }
-
-//   ShuffleCaveData();
-// }
-
-// Cave::Cave(Cave& other) {
-//   cave_data = other.getCaveData();
-//   cell_info = other.cell_info;
-//   rows = other.rows;
-//   cols = other.cols;
-//   is_correct = other.is_correct;
-// }
-
 void Cave::ShuffleCaveData() {
     std::vector<int> flatMatrix;
     for (const auto& row : cave_data_) 
@@ -123,11 +82,13 @@ std::vector<std::vector<bool>>& Cave::GetCaveData() { return cave_data_; }
 
 bool Cave::HasNextGeneration() 
 {
-    Cave cave_copy(*this);
-    cave_copy.CellularAutomation();
-
-    bool is_equal = cave_data_ == cave_copy.cave_data_;
-    return !is_equal;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (cave_data_[i][j] == ALIVECELL && CountAliveNeighbors(i, j) < cell_info.limit_death) return true;
+            else if (cave_data_[i][j] == DEATHCELL && CountAliveNeighbors(i, j) > cell_info.limit_birth) return true;
+        }
+    }
+    return false;
 }
 
 void Cave::CellularAutomation() 
