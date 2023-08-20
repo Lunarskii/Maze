@@ -37,7 +37,8 @@ void Model::GenerateCave(int limit_birth, int limit_death, int init_chance, int 
     cave_->setLimitBirth(limit_birth);
     cave_->setLimitDeath(limit_death);
     cave_->setInitialChance(init_chance);
-    cave_->ShuffleCaveData();
+    cave_->setSize(size);
+    cave_->GenerateRandomCave();
     emit CaveReady(&cave_->GetCaveData());
 }
 
