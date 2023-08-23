@@ -1,5 +1,7 @@
 #include "mazepainter.h"
 
+#include <iostream>
+
 MazePainter::MazePainter(QWidget* parent)
     : QWidget(parent)
     , painter(new QPainter) 
@@ -10,21 +12,16 @@ MazePainter::~MazePainter()
     delete painter;
 }
 
-inline bool MazePainter::WallExists_(bool cell)
+inline bool MazePainter::WallExists_(long cell)
 {
-    return cell;
+    return cell == 1;
 }
 
-void MazePainter::SetRightWalls(maze_type* right_walls)
+void MazePainter::SetMaze(MazeType* maze)
 {
-    right_walls_ = right_walls;
-    cell_width = static_cast<double>(this->width()) / (*right_walls_)[0].size();
-}
-
-void MazePainter::SetBottomWalls(maze_type* bottom_walls)
-{
-    bottom_walls_ = bottom_walls;
-    cell_height = static_cast<double>(this->height()) / right_walls_->size();
+    maze_ = maze;
+    cell_width_ = static_cast<double>(this->width()) / maze_->cols;
+    cell_height_ = static_cast<double>(this->height()) / maze_->rows;
 }
 
 void MazePainter::TurnOffClicks()
@@ -37,7 +34,7 @@ void MazePainter::paintEvent(QPaintEvent*)
 {
     painter->begin(this);
 
-    if (right_walls_ != nullptr && bottom_walls_ != nullptr)
+    if (maze_ != nullptr)
     {
         PaintMaze_();
         PaintSquares_();
@@ -52,21 +49,21 @@ void MazePainter::PaintMaze_()
     painter->setBrush(Qt::black); // Цвет клеток
     painter->drawRect(this->x(), this->y(), this->width(), this->height());
     
-    for (int i = 0; i != right_walls_->size(); ++i)
+    for (int i = 0; i < maze_->rows; ++i)
     {
-        for (int j = 0; j != (*right_walls_)[i].size(); ++j)
+        for (int j = 0; j < maze_->cols; ++j)
         {
-            if (WallExists_((*right_walls_)[i][j]))
+            if (WallExists_((maze_->right_walls)[i][j]))
             {
-                double x = (j + 1) * cell_width + this->x();
-                double y = i * cell_height + this->y();
-                painter->drawLine(QPointF(x, y), QPointF(x, y + cell_height));
+                double x = (j + 1) * cell_width_ + this->x();
+                double y = i * cell_height_ + this->y();
+                painter->drawLine(QPointF(x, y), QPointF(x, y + cell_height_));
             }
-            if (WallExists_((*bottom_walls_)[i][j]))
+            if (WallExists_((maze_->bottom_walls)[i][j]))
             {
-                double x = j * cell_width + this->x();
-                double y = (i + 1) * cell_height + this->y();
-                painter->drawLine(QPointF(x, y), QPointF(x + cell_width, y));
+                double x = j * cell_width_ + this->x();
+                double y = (i + 1) * cell_height_ + this->y();
+                painter->drawLine(QPointF(x, y), QPointF(x + cell_width_, y));
             }
         }
     }
@@ -93,18 +90,18 @@ void MazePainter::PaintSquare_(QPoint& position)
 
     GetCellNumbers_(position, cell_x, cell_y);
 
-    double margin_width = cell_width / 10;
-    double margin_height = cell_height / 10;
-    double x = (cell_x * cell_width) + margin_width + this->x();
-    double y = (cell_y * cell_height) + margin_height + this->y();
+    double margin_width = cell_width_ / 10;
+    double margin_height = cell_height_ / 10;
+    double x = (cell_x * cell_width_) + margin_width + this->x();
+    double y = (cell_y * cell_height_) + margin_height + this->y();
 
-    painter->drawRect(x, y, cell_width - margin_width * 2, cell_height - margin_height * 2);
+    painter->drawRect(x, y, cell_width_ - margin_width * 2, cell_height_ - margin_height * 2);
 }
 
 void MazePainter::GetCellNumbers_(QPoint& position, int& x, int& y)
 {
-    x = std::floor((position.x() - this->x()) / cell_width);
-    y = std::floor((position.y() - this->y()) / cell_height);
+    x = std::floor((position.x() - this->x()) / cell_width_);
+    y = std::floor((position.y() - this->y()) / cell_height_);
 }
 
 bool MazePainter::ClickInWidget_(QPoint position)

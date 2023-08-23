@@ -4,9 +4,9 @@ CavePainter::CavePainter(QWidget* parent)
     : QWidget(parent)
 {}
 
-void CavePainter::SetCaveData(std::vector<std::vector<bool>>* cave_data)
+void CavePainter::SetCave(CaveType* cave)
 {
-    cave_data_ = cave_data;
+    cave_ = cave;
 }
 
 inline bool CavePainter::IsAliveCell_(bool cell)
@@ -16,24 +16,21 @@ inline bool CavePainter::IsAliveCell_(bool cell)
 
 void CavePainter::paintEvent(QPaintEvent*) 
 {
-    if (cave_data_ != nullptr)
+    if (cave_ != nullptr)
     {
         QPainter painter(this);
-        
-        unsigned int rows = cave_data_->size();
-        unsigned int cols = (*cave_data_)[0].size();
-        double cell_width = this->width() / cols;
-        double cell_height = this->height() / rows;
+        double cell_width = this->width() / cave_->cols;
+        double cell_height = this->height() / cave_->rows;
 
-        for (int row = 0; row < rows; ++row) 
+        for (int row = 0; row < cave_->rows; ++row) 
         {
-            for (int col = 0; col < cols; ++col) 
+            for (int col = 0; col < cave_->cols; ++col) 
             {
-                if (IsAliveCell_((*cave_data_)[row][col])) 
+                if (IsAliveCell_((cave_->cave_data)[row][col])) 
                 {
                     painter.fillRect(col * cell_width, row * cell_height, cell_width, cell_height, Qt::black);
                 } 
-                else if (!IsAliveCell_((*cave_data_)[row][col])) 
+                else if (!IsAliveCell_((cave_->cave_data)[row][col])) 
                 {
                     painter.fillRect(col * cell_width, row * cell_height, cell_width, cell_height, Qt::white);
                 }

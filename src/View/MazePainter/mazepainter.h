@@ -5,27 +5,24 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <cmath>
+#include "../../Model/data_types.h"
 
 class MazePainter : public QWidget
 {
-    using maze_type = std::vector<std::vector<bool>>;
-
 public:
     MazePainter(QWidget* parent = nullptr);
     ~MazePainter();
 
-    void SetRightWalls(maze_type* right_walls);
-    void SetBottomWalls(maze_type* bottom_walls);
+    void SetMaze(MazeType* maze);
     void TurnOffClicks();
 
 private:
     QPainter *painter;
-    maze_type* right_walls_{ nullptr };
-    maze_type* bottom_walls_{ nullptr };
-    double cell_width {};
-    double cell_height {};
+    MazeType* maze_{ nullptr };
+    double cell_width_{};
+    double cell_height_{};
 
-    inline bool WallExists_(bool cell);
+    inline bool WallExists_(long cell);
     void paintEvent(QPaintEvent*) override;
     void PaintMaze_();
     void PaintSquares_();

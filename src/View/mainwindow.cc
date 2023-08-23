@@ -20,17 +20,16 @@ MainWindow::~MainWindow()
     delete cave_painter_;
 }
 
-void MainWindow::DrawMaze(maze_type* right_walls, maze_type* bottom_walls)
+void MainWindow::DrawMaze(MazeType* maze)
 {
-    maze_painter_->SetRightWalls(right_walls);
-    maze_painter_->SetBottomWalls(bottom_walls);
+    maze_painter_->SetMaze(maze);
     maze_painter_->TurnOffClicks();
     maze_painter_->update();
 }
 
-void MainWindow::DrawCave(cave_type* cave_data)
+void MainWindow::DrawCave(CaveType* cave)
 {
-    cave_painter_->SetCaveData(cave_data);
+    cave_painter_->SetCave(cave);
     cave_painter_->update();
 }
 

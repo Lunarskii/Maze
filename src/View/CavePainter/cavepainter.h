@@ -5,18 +5,19 @@
 #include <QWidget>
 #include <QtWidgets>
 #include <string>
+#include "../../Model/data_types.h"
 
 class CavePainter : public QWidget 
 {
 public:
     CavePainter(QWidget* parent = nullptr);
-    void SetCaveData(std::vector<std::vector<bool>>* cave_data);
+    void SetCave(CaveType* cave);
 
 private:
     void paintEvent(QPaintEvent*) override;
     inline bool IsAliveCell_(bool cell);
 
-    std::vector<std::vector<bool>>* cave_data_{ nullptr };
+    CaveType* cave_{ nullptr };
 };
 
 #endif  // A1_MAZE_VIEW_CAVEPAINTER_CAVEPAINTER_H_

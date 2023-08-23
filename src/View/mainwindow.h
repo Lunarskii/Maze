@@ -30,9 +30,6 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    using maze_type = std::vector<std::vector<bool>>;
-    using cave_type = std::vector<std::vector<bool>>;
-
     MainWindow(QWidget* parent = nullptr);  
     ~MainWindow();
 
@@ -45,8 +42,8 @@ signals:
     void NextGeneration();
 
 public slots:
-    void DrawMaze(maze_type* right_walls, maze_type* bottom_walls);
-    void DrawCave(cave_type* cave_data);
+    void DrawMaze(MazeType* maze);
+    void DrawCave(CaveType* cave);
     void on_pushButtonStop_clicked();
     
 private slots:
