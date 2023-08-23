@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
+    <width>740</width>
     <height>520</height>
    </rect>
   </property>
@@ -84,7 +84,7 @@ border-radius: 6.5;</string>
      <string notr="true">border: 1px;</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -839,10 +839,27 @@ border: 1px;</string>
      </attribute>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>521</x>
+      <y>0</y>
+      <width>2</width>
+      <height>520</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>tabWidgetMazeNCave</zorder>
    <zorder>pushButtonMaze</zorder>
    <zorder>pushButtonCave</zorder>
    <zorder>tabWidgetDisplay</zorder>
+   <zorder>label_6</zorder>
   </widget>
  </widget>
  <resources/>
