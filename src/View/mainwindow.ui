@@ -38,7 +38,7 @@ border: solid;
 border-radius: 6.5;</string>
     </property>
     <property name="text">
-     <string>Лабиринты</string>
+     <string>Maze</string>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroupAppMode</string>
@@ -65,7 +65,7 @@ border: solid;
 border-radius: 6.5;</string>
     </property>
     <property name="text">
-     <string>Пещеры</string>
+     <string>Cave</string>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroupAppMode</string>
@@ -94,7 +94,7 @@ border-radius: 6.5;</string>
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>70</y>
+        <y>90</y>
         <width>140</width>
         <height>16</height>
        </rect>
@@ -112,7 +112,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>120</y>
         <width>140</width>
         <height>16</height>
        </rect>
@@ -130,7 +130,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>130</y>
+        <y>150</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -154,7 +154,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>130</y>
+        <y>150</y>
         <width>50</width>
         <height>18</height>
        </rect>
@@ -183,7 +183,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>160</y>
+        <y>180</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -203,11 +203,11 @@ QPushButton:hover {
        <string>Open file</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxMazeRows">
+     <widget class="QSpinBox" name="mazeRows">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>66</y>
+        <y>86</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -228,11 +228,11 @@ border-radius: 4;</string>
        <number>4</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxMazeCols">
+     <widget class="QSpinBox" name="mazeCols">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>96</y>
+        <y>116</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -257,7 +257,7 @@ border-radius: 4;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>19</y>
+        <y>39</y>
         <width>200</width>
         <height>41</height>
        </rect>
@@ -286,7 +286,7 @@ maze</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>19</y>
+        <y>39</y>
         <width>160</width>
         <height>16</height>
        </rect>
@@ -309,7 +309,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>44</y>
+        <y>64</y>
         <width>118</width>
         <height>18</height>
        </rect>
@@ -332,7 +332,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>74</y>
+        <y>94</y>
         <width>118</width>
         <height>18</height>
        </rect>
@@ -355,7 +355,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>104</y>
+        <y>124</y>
         <width>140</width>
         <height>18</height>
        </rect>
@@ -378,7 +378,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>295</y>
+        <y>315</y>
         <width>118</width>
         <height>16</height>
        </rect>
@@ -401,7 +401,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>350</y>
+        <y>370</y>
         <width>48</width>
         <height>18</height>
        </rect>
@@ -433,7 +433,7 @@ QPushButton:pressed
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>320</y>
+        <y>340</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -451,7 +451,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>140</x>
-        <y>320</y>
+        <y>340</y>
         <width>58</width>
         <height>16</height>
        </rect>
@@ -470,7 +470,7 @@ border: 1px;
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>167</y>
+        <y>187</y>
         <width>31</width>
         <height>16</height>
        </rect>
@@ -488,7 +488,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>350</y>
+        <y>370</y>
         <width>44</width>
         <height>18</height>
        </rect>
@@ -520,7 +520,7 @@ QPushButton:pressed
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>380</y>
+        <y>400</y>
         <width>44</width>
         <height>18</height>
        </rect>
@@ -552,7 +552,7 @@ QPushButton:pressed
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>140</y>
+        <y>160</y>
         <width>200</width>
         <height>17</height>
        </rect>
@@ -575,7 +575,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>235</y>
+        <y>255</y>
         <width>150</width>
         <height>17</height>
        </rect>
@@ -598,7 +598,7 @@ border: 1px;</string>
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>200</y>
+        <y>220</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -627,7 +627,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>21</x>
-        <y>260</y>
+        <y>280</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -647,11 +647,11 @@ QPushButton:hover {
        <string>Open file</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxBirthLimit">
+     <widget class="QSpinBox" name="caveBirthLimit">
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>40</y>
+        <y>60</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -669,11 +669,11 @@ border-radius: 4;</string>
        <number>4</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxStartInit">
+     <widget class="QSpinBox" name="caveStartInit">
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>100</y>
+        <y>120</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -691,11 +691,11 @@ border-radius: 4;</string>
        <number>40</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxDelay">
+     <widget class="QSpinBox" name="caveDelay">
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>317</y>
+        <y>337</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -716,11 +716,11 @@ border-radius: 4;</string>
        <number>10</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxDeathLimit">
+     <widget class="QSpinBox" name="caveDeathLimit">
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>70</y>
+        <y>90</y>
         <width>44</width>
         <height>23</height>
        </rect>
@@ -738,11 +738,11 @@ border-radius: 4;</string>
        <number>3</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxCaveSizeRows">
+     <widget class="QSpinBox" name="caveRows">
       <property name="geometry">
        <rect>
         <x>66</x>
-        <y>165</y>
+        <y>185</y>
         <width>40</width>
         <height>23</height>
        </rect>
@@ -763,11 +763,11 @@ border-radius: 4;</string>
        <number>50</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBoxCaveSizeCols">
+     <widget class="QSpinBox" name="caveCols">
       <property name="geometry">
        <rect>
         <x>118</x>
-        <y>165</y>
+        <y>185</y>
         <width>40</width>
         <height>23</height>
        </rect>
@@ -792,7 +792,7 @@ border-radius: 4;</string>
       <property name="geometry">
        <rect>
         <x>108</x>
-        <y>165</y>
+        <y>185</y>
         <width>20</width>
         <height>20</height>
        </rect>
