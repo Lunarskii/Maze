@@ -10,21 +10,19 @@ class Model : public QObject
     Q_OBJECT
 
 public:
-    using maze_type = Maze::maze_type;
-    using cave_type = Maze::maze_type; // изменить типы данных
     static Model& GetInstance();
 
 signals:
-    void MazeReady(maze_type* right_walls, maze_type* bottom_walls);
+    void MazeReady(MazeType* maze);
     void MazeIsSaved();
-    void CaveReady(cave_type* cave_data);
+    void CaveReady(CaveType* cave);
     void GenerationIsFinished();
 
 public slots:
-    void UploadMaze(std::string directory);
+    void UploadMaze(std::string file_name);
     void GenerateMaze(unsigned int rows, unsigned int cols);
-    void SaveMaze(std::string directory);
-    void UploadCave(std::string directory, int limit_birth, int limit_death);
+    void SaveMaze(std::string file_name);
+    void UploadCave(std::string file_name, int limit_birth, int limit_death);
     void GenerateCave(int limit_birth, int limit_death, int init_chance, int size);
     void NextGeneration();
     
