@@ -1,24 +1,14 @@
 #ifndef A1_MAZE_MODEL_CAVE_CAVE_H_
 #define A1_MAZE_MODEL_CAVE_CAVE_H_
 
-#define MIN_WIDGET_SIZE 1
-#define MAX_WIDGET_SIZE 50
-
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <random>
 #include <algorithm>
-
-#define DEATHCELL 0
-#define ALIVECELL 1
-
-struct cellInfo {
-  int limit_birth{};
-  int limit_death{};
-  int initial_chance{};
-};
+#include "../file_manager.h"
+#include "../generator.h"
 
 class Cave {
 public:
@@ -29,20 +19,18 @@ public:
     void setInitialChance(int value);
     void setSize(int value);
 
-    std::vector<std::vector<bool>>& GetCaveData();
+    CaveType& GetCave();
 
     bool HasNextGeneration();
     void CellularAutomation();
-    void UploadCaveFromFile(const std::string& filename);
-    void GenerateRandomCave();
+    void UploadCaveFromFile(const std::string& file_name);
+    void GenerateCave();
 
 private:
     int CountAliveNeighbors(int row, int col);
 
 private:
-    std::vector<std::vector<bool>> cave_data_ {};
-    struct cellInfo cell_info {};
-    int rows {}, cols {};
+    CaveType cave_;
 };
 
 #endif  // A1_MAZE_MODEL_CAVE_CAVE_H_
