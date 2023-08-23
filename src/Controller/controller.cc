@@ -1,7 +1,7 @@
 #include "controller.h"
 
-Controller::Controller(MainWindow* v, Model* model)
-    : model_(model)
+Controller::Controller(MainWindow* v, Model* m)
+    : model_(m)
     , view_(v)
 {
     view_->show();

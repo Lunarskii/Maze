@@ -9,7 +9,7 @@ class Controller : public QObject
     Q_OBJECT
     
 public:
-    explicit Controller(MainWindow* v, Model* model);
+    explicit Controller(MainWindow* v, Model* m);
 
 private:
     Model* model_;
