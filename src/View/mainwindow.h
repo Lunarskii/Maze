@@ -45,39 +45,33 @@ signals:
 public slots:
     void DrawMaze(MazeType* maze);
     void DrawPath(std::vector<Point> path);
-    void EmitFindPath(Point from, Point to);
     void DrawCave(CaveType* cave);
-    void on_pushButtonStop_clicked();
-    
-private slots:
-    // maze process
-    void on_pushButtonOpenMaze_clicked();
-    void on_pushButtonGenerateMaze_clicked();
-    void on_pushButtonSaveMaze_clicked();
+    void CaveStopGeneration_();
 
-    // animation
-    void switchTab(QAbstractButton *button);
-    void HideTabs_();
-    void updateDisplayWidgets();
-    void on_pushButtonAuto_clicked();
-    void on_pushButtonLoadMaze_clicked();
-    void on_pushButtonGenerateMaze_small_clicked();
-
-    // cave process
-    void on_pushButtonNextStep_clicked();
-    void on_pushButtonStart_clicked();
-    void on_pushButtonOpenCave_clicked();
-    void on_pushButtonGenerateCave_clicked();
-
-private:
-    Ui::MainWindow *ui;
-    MazePainter* maze_painter_{ nullptr };
-    CavePainter* cave_painter_{ nullptr };
-    QTimer *timer{ nullptr };
-
-    // Events
+protected:
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dropEvent(QDropEvent* event) override;
+    
+private slots:
+    void SwitchApplicationTab_(QAbstractButton *button);
+    void HideTabs_();
+    void UpdateDisplayWidgets_();
+    void EmitUploadMaze_();
+    void EmitGenerateMaze_();
+    void EmitSaveMaze_();
+    // void on_pushButtonAuto_clicked();
+
+    void EmitUploadCave_();
+    void EmitGenerateCave_();
+    void CaveStartGeneration_();
+
+private:
+    Ui::MainWindow* ui_;
+    MazePainter* maze_painter_{ nullptr };
+    CavePainter* cave_painter_{ nullptr };
+    QTimer* timer_{ nullptr };
+
+    void InitView_();
 };
 
 #endif  // A1_MAZE_VIEW_MAINWINDOW_H_

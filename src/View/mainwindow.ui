@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>520</height>
+    <width>1108</width>
+    <height>881</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -76,8 +76,8 @@ border-radius: 6.5;</string>
      <rect>
       <x>522</x>
       <y>10</y>
-      <width>208</width>
-      <height>1000</height>
+      <width>211</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -126,7 +126,7 @@ border: 1px;</string>
        <string>Number of columns</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonGenerateMaze">
+     <widget class="QPushButton" name="generateMazeButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -150,7 +150,7 @@ QPushButton:hover {
        <string>Generate</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonSaveMaze">
+     <widget class="QPushButton" name="saveMazeButton">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -179,7 +179,7 @@ QPushButton:hover {
        <string>Save</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButtonOpenMaze">
+     <widget class="QPushButton" name="openMazeButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -371,7 +371,7 @@ background-color: rgba( 255, 255, 255, 0% );
 border: 1px;</string>
       </property>
       <property name="text">
-       <string>Startring init.</string>
+       <string>Starting init</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_12">
@@ -818,8 +818,8 @@ border: 1px;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>520</width>
-      <height>520</height>
+      <width>500</width>
+      <height>500</height>
      </rect>
     </property>
     <property name="styleSheet">
