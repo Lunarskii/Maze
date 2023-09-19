@@ -18,5 +18,5 @@ Controller::Controller(MainWindow* v, Model* m)
     connect(view_, &MainWindow::GenerateCave, model_, &Model::GenerateCave);
     connect(view_, &MainWindow::NextGeneration, model_, &Model::NextGeneration);
     connect(model_, &Model::CaveReady, view_, &MainWindow::DrawCave);
-    connect(model_, &Model::GenerationIsFinished, view_, &MainWindow::on_pushButtonStop_clicked);
+    connect(model_, &Model::GenerationIsFinished, view_, &MainWindow::CaveStopGeneration_);
 }
