@@ -106,7 +106,7 @@ void MazePainter::PaintPath_()
 {
     if (path_.size() > 1 && left_btn_pressed_ && right_btn_pressed_)
     {
-        painter->setPen(QPen(Qt::blue, 1));
+        painter->setPen(QPen(Qt::blue, 2));
         double margin_width = cell_width_ / 2.0;
         double margin_height = cell_height_ / 2.0;
         Point from{path_[0]};
