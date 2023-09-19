@@ -1,5 +1,7 @@
 #include "mazepainter.h"
 
+#include <iostream>
+
 MazePainter::MazePainter(QWidget* parent)
     : QWidget(parent)
     , painter(new QPainter) 
@@ -109,8 +111,18 @@ void MazePainter::PaintPath_()
         painter->setPen(QPen(Qt::blue, 1));
         double margin_width = cell_width_ / 2.0;
         double margin_height = cell_height_ / 2.0;
+        Point from{path_[0]};
 
-
+        double from_x = (static_cast<double>(from.x) * cell_height_) + margin_height;
+        double from_y = (static_cast<double>(from.y) * cell_width_) + margin_width;
+        for (Point to : std::vector<Point>(++path_.begin(), path_.end()))
+        {
+            double to_x = (static_cast<double>(to.x) * cell_height_) + margin_height;
+            double to_y = (static_cast<double>(to.y) * cell_width_) + margin_width;
+            painter->drawLine(QPointF(from_y, from_x), QPointF(to_y, to_x));
+            from_x = to_x;
+            from_y = to_y;
+        }
     }
 }
 
