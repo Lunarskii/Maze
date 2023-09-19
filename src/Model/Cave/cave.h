@@ -27,25 +27,31 @@ class Cave {
    * @brief Sets the birth limit for each cell.
    * @param value Сan have values from 0 to 7.
    */
-  void setLimitBirth(int value);
+  void SetLimitBirth(int value);
 
   /**
    * @brief Sets the death limit for each cell.
    * @param value Сan have values from 0 to 7.
    */
-  void setLimitDeath(int value);
+  void SetLimitDeath(int value);
 
   /**
    * @brief Sets the chance of initial initialization for each cell.
    * @param value Сan have values from 0 to 100.
    */
-  void setInitialChance(int value);
+  void SetInitialChance(int value);
 
   /**
-   * @brief Sets the size of the cave.
-   * @param value Сan have values from 1 to 50.
+   * @brief Sets the rows of the cave.
+   * @param rows Сan have values from 1 to 50.
    */
-  void setSize(int value);
+  void SetRows(int rows);
+
+  /**
+   * @brief Sets the columns of the cave.
+   * @param cols Сan have values from 1 to 50.
+   */
+  void SetCols(int cols);
 
   /**
    * @brief Returns a reference to the CaveType.
