@@ -24,6 +24,11 @@ void Model::SaveMaze(std::string file_name)
     emit MazeIsSaved();
 }
 
+void Model::FindPath(Point from, Point to)
+{
+    emit PathReady(maze_->FindPath(from, to));
+}
+
 void Model::UploadCave(std::string file_name, int limit_birth, int limit_death)
 {
     cave_->setLimitBirth(limit_birth);

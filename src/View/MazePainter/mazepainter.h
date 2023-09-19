@@ -9,16 +9,23 @@
 
 class MazePainter : public QWidget
 {
+    Q_OBJECT
+
 public:
     MazePainter(QWidget* parent = nullptr);
     ~MazePainter();
 
     void SetMaze(MazeType* maze);
+    void SetPath(std::vector<Point> path);
     void TurnOffClicks();
+
+signals:
+    void FindPath(Point from, Point to);
 
 private:
     QPainter *painter;
     MazeType* maze_{ nullptr };
+    std::vector<Point> path_;
     double cell_width_{};
     double cell_height_{};
 
@@ -27,8 +34,8 @@ private:
     void PaintMaze_();
     void PaintSquares_();
     void PaintSquare_(QPoint& position);
+    void PaintPath_();
     void GetCellNumbers_(QPoint& position, int& x, int& y);
-    bool ClickInWidget_(QPoint position);
     bool ClickInSameCell_(QPoint& p1, QPoint& p2);
 
     void mousePressEvent(QMouseEvent* event) override;

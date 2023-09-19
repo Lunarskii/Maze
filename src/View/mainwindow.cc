@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     HideTabs_();
     updateDisplayWidgets();
     connect(ui->buttonGroupAppMode, SIGNAL(buttonClicked(QAbstractButton *)), this, SLOT(switchTab(QAbstractButton *)));
+    connect(maze_painter_, &MazePainter::FindPath, this, &MainWindow::EmitFindPath);
 }
 
 MainWindow::~MainWindow()
@@ -25,6 +26,17 @@ void MainWindow::DrawMaze(MazeType* maze)
     maze_painter_->SetMaze(maze);
     maze_painter_->TurnOffClicks();
     maze_painter_->update();
+}
+
+void MainWindow::DrawPath(std::vector<Point> path)
+{
+    maze_painter_->SetPath(path);
+    maze_painter_->update();
+}
+
+void MainWindow::EmitFindPath(Point from, Point to)
+{
+    emit FindPath(from, to);
 }
 
 void MainWindow::DrawCave(CaveType* cave)
@@ -65,19 +77,19 @@ void MainWindow::on_pushButtonOpenCave_clicked()
 
     if (!file_path.isEmpty()) 
     {
-        int limit_birth = ui->lineEditCaveLifeLim->text().toInt();
-        int limit_death = ui->lineEditCaveDeathLim->text().toInt();
-        emit UploadCave(file_path.toStdString(), limit_birth, limit_death);
+        // int limit_birth = ui->lineEditCaveLifeLim->text().toInt();
+        // int limit_death = ui->lineEditCaveDeathLim->text().toInt();
+        // emit UploadCave(file_path.toStdString(), limit_birth, limit_death);
     }
 }
 
 void MainWindow::on_pushButtonGenerateCave_clicked() 
 {
-    int limit_birth = ui->lineEditCaveLifeLim->text().toInt();
-    int limit_death = ui->lineEditCaveDeathLim->text().toInt();
-    int init_chance = ui->lineEditCaveInitChance->text().toInt();
-    int size = ui->lineEditCaveSize->text().toInt();
-    emit GenerateCave(limit_birth, limit_death, init_chance, size);
+    // int limit_birth = ui->lineEditCaveLifeLim->text().toInt();
+    // int limit_death = ui->lineEditCaveDeathLim->text().toInt();
+    // int init_chance = ui->lineEditCaveInitChance->text().toInt();
+    // int size = ui->lineEditCaveSize->text().toInt();
+    // emit GenerateCave(limit_birth, limit_death, init_chance, size);
 }
 
 void MainWindow::on_pushButtonNextStep_clicked() 
@@ -87,16 +99,16 @@ void MainWindow::on_pushButtonNextStep_clicked()
 
 void MainWindow::on_pushButtonStart_clicked() 
 {
-    if (timer == nullptr) 
-    {
-        ui->pushButtonStart->setStyleSheet(ui->pushButtonStart->styleSheet().replace("background-color: #D9D9D9","background-color: #509171",Qt::CaseInsensitive));
-        timer = new QTimer(this);
-        connect(timer, &QTimer::timeout, this, [&] 
-        {
-            on_pushButtonNextStep_clicked();
-        });
-        timer->start(ui->lineEditCaveDelay->text().toInt());
-    }
+    // if (timer == nullptr) 
+    // {
+    //     ui->pushButtonStart->setStyleSheet(ui->pushButtonStart->styleSheet().replace("background-color: #D9D9D9","background-color: #509171",Qt::CaseInsensitive));
+    //     timer = new QTimer(this);
+    //     connect(timer, &QTimer::timeout, this, [&] 
+    //     {
+    //         on_pushButtonNextStep_clicked();
+    //     });
+    //     timer->start(ui->lineEditCaveDelay->text().toInt());
+    // }
 }
 
 void MainWindow::on_pushButtonStop_clicked() 

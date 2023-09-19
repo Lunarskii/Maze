@@ -37,12 +37,15 @@ signals:
     void UploadMaze(std::string file_name);
     void GenerateMaze(unsigned int rows, unsigned int cols);
     void SaveMaze(std::string file_name);
+    void FindPath(Point from, Point to);
     void UploadCave(std::string file_name, int limit_birth, int limit_death);
     void GenerateCave(int limit_birth, int limit_death, int init_chance, int size);
     void NextGeneration();
 
 public slots:
     void DrawMaze(MazeType* maze);
+    void DrawPath(std::vector<Point> path);
+    void EmitFindPath(Point from, Point to);
     void DrawCave(CaveType* cave);
     void on_pushButtonStop_clicked();
     

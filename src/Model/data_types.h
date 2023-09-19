@@ -3,6 +3,21 @@
 
 #include <vector>
 
+struct Point final 
+{
+    int x;
+    int y;
+
+    Point(int x = 0, int y = 0) : x(x), y(y){};
+};
+
+struct SidePoint final 
+{
+    int x;
+    int y;
+    long value;
+};
+
 enum TypesOfEntities
 {
     kMaze = 1,

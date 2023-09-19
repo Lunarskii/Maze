@@ -3,6 +3,7 @@
 
 #include "../file_manager.h"
 #include "../generator.h"
+#include "path_finder.h"
 
 class Maze
 {
@@ -11,10 +12,12 @@ public:
     void UploadMazeFromFile(std::string file_name);
     void GenerateMaze(unsigned int rows, unsigned int cols);
     void SaveMaze(std::string file_name);
+    std::vector<Point> FindPath(Point from, Point to);
     MazeType& GetMaze();
 
 private:
     MazeType maze_;
+    std::vector<Point> path_;
 };
 
 

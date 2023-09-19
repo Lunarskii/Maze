@@ -1,7 +1,5 @@
 #include "mazepainter.h"
 
-#include <iostream>
-
 MazePainter::MazePainter(QWidget* parent)
     : QWidget(parent)
     , painter(new QPainter) 
@@ -24,6 +22,11 @@ void MazePainter::SetMaze(MazeType* maze)
     cell_height_ = static_cast<double>(this->height()) / maze_->rows;
 }
 
+void MazePainter::SetPath(std::vector<Point> path)
+{
+    path_ = path;
+}
+
 void MazePainter::TurnOffClicks()
 {
     left_btn_pressed_ = false;
@@ -38,6 +41,7 @@ void MazePainter::paintEvent(QPaintEvent*)
     {
         PaintMaze_();
         PaintSquares_();
+        PaintPath_();
     }
 
     painter->end();
@@ -45,8 +49,8 @@ void MazePainter::paintEvent(QPaintEvent*)
 
 void MazePainter::PaintMaze_()
 {
-    painter->setPen(QPen(Qt::white, 2)); // Цвет стен и толщина стен
-    painter->setBrush(Qt::black); // Цвет клеток
+    painter->setPen(QPen(Qt::white, 2));
+    painter->setBrush(Qt::black);
     painter->drawRect(this->x(), this->y(), this->width(), this->height());
     
     for (int i = 0; i < maze_->rows; ++i)
@@ -55,14 +59,14 @@ void MazePainter::PaintMaze_()
         {
             if (WallExists_((maze_->right_walls)[i][j]))
             {
-                double x = (j + 1) * cell_width_ + this->x();
-                double y = i * cell_height_ + this->y();
+                double x = (j + 1) * cell_width_;
+                double y = i * cell_height_;
                 painter->drawLine(QPointF(x, y), QPointF(x, y + cell_height_));
             }
             if (WallExists_((maze_->bottom_walls)[i][j]))
             {
-                double x = j * cell_width_ + this->x();
-                double y = (i + 1) * cell_height_ + this->y();
+                double x = j * cell_width_;
+                double y = (i + 1) * cell_height_;
                 painter->drawLine(QPointF(x, y), QPointF(x + cell_width_, y));
             }
         }
@@ -92,29 +96,28 @@ void MazePainter::PaintSquare_(QPoint& position)
 
     double margin_width = cell_width_ / 10;
     double margin_height = cell_height_ / 10;
-    double x = (cell_x * cell_width_) + margin_width + this->x();
-    double y = (cell_y * cell_height_) + margin_height + this->y();
+    double x = (cell_x * cell_width_) + margin_width;
+    double y = (cell_y * cell_height_) + margin_height;
 
     painter->drawRect(x, y, cell_width_ - margin_width * 2, cell_height_ - margin_height * 2);
 }
 
-void MazePainter::GetCellNumbers_(QPoint& position, int& x, int& y)
+void MazePainter::PaintPath_()
 {
-    x = std::floor((position.x() - this->x()) / cell_width_);
-    y = std::floor((position.y() - this->y()) / cell_height_);
+    if (path_.size() > 1 && left_btn_pressed_ && right_btn_pressed_)
+    {
+        painter->setPen(QPen(Qt::blue, 1));
+        double margin_width = cell_width_ / 2.0;
+        double margin_height = cell_height_ / 2.0;
+
+
+    }
 }
 
-bool MazePainter::ClickInWidget_(QPoint position)
+void MazePainter::GetCellNumbers_(QPoint& position, int& x, int& y)
 {
-    return
-        position.x() >= this->x()
-        && 
-        position.x() <= this->x() + this->width()
-        && 
-        position.y() >= this->y()
-        && 
-        position.y() <= this->y() + this->height()
-    ;
+    x = std::floor(position.x() / cell_width_);
+    y = std::floor(position.y() / cell_height_);
 }
 
 bool MazePainter::ClickInSameCell_(QPoint& p1, QPoint& p2)
@@ -130,10 +133,6 @@ bool MazePainter::ClickInSameCell_(QPoint& p1, QPoint& p2)
 void MazePainter::mousePressEvent(QMouseEvent *event) {
     QPoint pos = event->pos();
 
-    if (!ClickInWidget_(pos))
-    {
-        return;
-    }
     if (event->button() == Qt::LeftButton) 
     {
         if (left_btn_pressed_ == true && ClickInSameCell_(click_pos_left_, pos))
@@ -159,4 +158,17 @@ void MazePainter::mousePressEvent(QMouseEvent *event) {
         }
     }
     update();
+
+    if (left_btn_pressed_ && right_btn_pressed_)
+    {
+        int cell_x_left = 0;
+        int cell_y_left = 0;
+        int cell_x_right = 0;
+        int cell_y_right = 0;
+
+        GetCellNumbers_(click_pos_left_, cell_x_left, cell_y_left);
+        GetCellNumbers_(click_pos_right_, cell_x_right, cell_y_right);
+
+        emit FindPath(Point{cell_y_left, cell_x_left}, Point{cell_y_right, cell_x_right});
+    }
 }

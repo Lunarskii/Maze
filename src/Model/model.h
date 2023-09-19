@@ -14,6 +14,7 @@ public:
 
 signals:
     void MazeReady(MazeType* maze);
+    void PathReady(std::vector<Point> path);
     void MazeIsSaved();
     void CaveReady(CaveType* cave);
     void GenerationIsFinished();
@@ -22,6 +23,7 @@ public slots:
     void UploadMaze(std::string file_name);
     void GenerateMaze(unsigned int rows, unsigned int cols);
     void SaveMaze(std::string file_name);
+    void FindPath(Point from, Point to);
     void UploadCave(std::string file_name, int limit_birth, int limit_death);
     void GenerateCave(int limit_birth, int limit_death, int init_chance, int size);
     void NextGeneration();
