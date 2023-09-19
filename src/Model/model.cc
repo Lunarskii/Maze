@@ -37,10 +37,8 @@ void Model::UploadCave(std::string file_name, int limit_birth, int limit_death)
     emit CaveReady(&cave_->GetCave());
 }
 
-void Model::GenerateCave(int limit_birth, int limit_death, int init_chance, unsigned int rows, unsigned int cols)
+void Model::GenerateCave(int init_chance, unsigned int rows, unsigned int cols)
 {
-    cave_->SetLimitBirth(limit_birth);
-    cave_->SetLimitDeath(limit_death);
     cave_->SetInitialChance(init_chance);
     cave_->SetRows(rows);
     cave_->SetCols(cols);
@@ -48,8 +46,10 @@ void Model::GenerateCave(int limit_birth, int limit_death, int init_chance, unsi
     emit CaveReady(&cave_->GetCave());
 }
 
-void Model::NextGeneration()
+void Model::NextGeneration(int limit_birth, int limit_death)
 {
+    cave_->SetLimitBirth(limit_birth);
+    cave_->SetLimitDeath(limit_death);
     cave_->CellularAutomation();
     emit CaveReady(&cave_->GetCave());
 

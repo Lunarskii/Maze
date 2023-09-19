@@ -14,7 +14,9 @@ void MainWindow::InitView_()
 
     connect(ui_->pushButtonNextStep, &QPushButton::clicked, this, [&]()
     {
-        emit NextGeneration();
+        int limit_birth = ui_->caveBirthLimit->value();
+        int limit_death = ui_->caveDeathLimit->value();
+        emit NextGeneration(limit_birth, limit_death);
     });
     connect(ui_->pushButtonOpenCave, &QPushButton::clicked, this, &MainWindow::EmitUploadCave_);
     connect(ui_->pushButtonStart, &QPushButton::clicked, this, &MainWindow::CaveStartGeneration_);

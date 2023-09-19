@@ -82,12 +82,10 @@ void MainWindow::EmitUploadCave_()
 
 void MainWindow::EmitGenerateCave_()
 {
-    int limit_birth = ui_->caveBirthLimit->value();
-    int limit_death = ui_->caveDeathLimit->value();
     int init_chance = ui_->caveStartInit->value();
     unsigned int rows = ui_->caveRows->value();
     unsigned int cols = ui_->caveCols->value();
-    emit GenerateCave(limit_birth, limit_death, init_chance, rows, cols);
+    emit GenerateCave(init_chance, rows, cols);
 }
 
 void MainWindow::CaveStartGeneration_() 
@@ -98,7 +96,7 @@ void MainWindow::CaveStartGeneration_()
         timer_ = new QTimer(this);
         connect(timer_, &QTimer::timeout, this, [&] 
         {
-            emit NextGeneration();
+            ui_->pushButtonNextStep->click();
         });
         timer_->start(ui_->caveDelay->value());
     }

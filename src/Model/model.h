@@ -25,8 +25,8 @@ public slots:
     void SaveMaze(std::string file_name);
     void FindPath(Point from, Point to);
     void UploadCave(std::string file_name, int limit_birth, int limit_death);
-    void GenerateCave(int limit_birth, int limit_death, int init_chance, unsigned int rows, unsigned int cols);
-    void NextGeneration();
+    void GenerateCave(int init_chance, unsigned int rows, unsigned int cols);
+    void NextGeneration(int limit_birth, int limit_death);
     
 private:
     Maze* maze_ { &Maze::GetInstance() };

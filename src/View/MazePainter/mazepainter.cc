@@ -1,7 +1,5 @@
 #include "mazepainter.h"
 
-#include <iostream>
-
 MazePainter::MazePainter(QWidget* parent)
     : QWidget(parent)
     , painter(new QPainter) 

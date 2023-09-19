@@ -6,8 +6,6 @@
 #include <algorithm>
 #include "../data_types.h"
 
-#include <iostream>
-
 class PathFinder
 {
 public:

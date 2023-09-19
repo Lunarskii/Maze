@@ -10,13 +10,6 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QMimeData>
-#include <chrono>
-#include <thread>
-
-
-#include <iostream>
-#include <cmath>
-
 #include "MazePainter/mazepainter.h"
 #include "CavePainter/cavepainter.h"
 #include "./ui_mainwindow.h"
@@ -39,18 +32,14 @@ signals:
     void SaveMaze(std::string file_name);
     void FindPath(Point from, Point to);
     void UploadCave(std::string file_name, int limit_birth, int limit_death);
-    void GenerateCave(int limit_birth, int limit_death, int init_chance, unsigned int rows, unsigned int cols);
-    void NextGeneration();
+    void GenerateCave(int init_chance, unsigned int rows, unsigned int cols);
+    void NextGeneration(int limit_birth, int limit_death);
 
 public slots:
     void DrawMaze(MazeType* maze);
     void DrawPath(std::vector<Point> path);
     void DrawCave(CaveType* cave);
     void CaveStopGeneration_();
-
-protected:
-    void dragEnterEvent(QDragEnterEvent* event) override;
-    void dropEvent(QDropEvent* event) override;
     
 private slots:
     void SwitchApplicationTab_(QAbstractButton *button);
