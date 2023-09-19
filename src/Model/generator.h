@@ -21,7 +21,7 @@ public:
         maze_.right_walls.resize(maze_.rows, std::vector<long>(maze_.cols));
         maze_.bottom_walls.resize(maze_.rows, std::vector<long>(maze_.cols));
 
-        for (int i = 0; i < maze_.rows - 1; ++i)
+        for (std::size_t i = 0; i < maze_.rows - 1; ++i)
         {
             AssignUniqueSet_();
             AddRightWalls_(i);
@@ -49,7 +49,7 @@ private:
 
     void AssignUniqueSet_()
     {
-        for (int i = 0; i < maze_.cols; ++i)
+        for (std::size_t i = 0; i < maze_.cols; ++i)
         {
             if (line_[i] == 0)
             {
@@ -60,7 +60,7 @@ private:
 
     void PrepareANewSet_(std::size_t row)
     {
-        for (int i = 0; i < maze_.cols; ++i)
+        for (std::size_t i = 0; i < maze_.cols; ++i)
         {
             if (maze_.bottom_walls[row][i] == true)
             {
@@ -71,7 +71,7 @@ private:
 
     void AddRightWalls_(std::size_t row)
     {
-        for (int i = 0; i < maze_.cols - 1; ++i)
+        for (std::size_t i = 0; i < maze_.cols - 1; ++i)
         {
             if (RandomBool_() == true || line_[i] == line_[i + 1])
             {
@@ -87,7 +87,7 @@ private:
 
     void AddBottomWalls_(std::size_t row)
     {
-        for (int i = 0; i < maze_.cols; ++i)
+        for (std::size_t i = 0; i < maze_.cols; ++i)
         {
             if (RandomBool_() == true && GetNumberOfCellsWithoutBottomWall_(line_[i], row) > 1)
             {
@@ -101,7 +101,7 @@ private:
         AssignUniqueSet_();
         AddRightWalls_(maze_.rows - 1);
 
-        for (int i = 0; i < maze_.cols - 1; ++i)
+        for (std::size_t i = 0; i < maze_.cols - 1; ++i)
         {
             if (line_[i] != line_[i + 1])
             {
@@ -115,9 +115,9 @@ private:
 
     void MergeSets_(std::size_t first_set, std::size_t second_set)
     {
-        for (int i = 0; i < maze_.cols; ++i)
+        for (std::size_t i = 0; i < maze_.cols; ++i)
         {
-            if (line_[i] == second_set)
+            if (line_[i] == static_cast<int>(second_set))
             {
                 line_[i] = first_set;
             }
@@ -128,9 +128,9 @@ private:
     {
         std::size_t count = 0;
 
-        for (int i = 0; i < maze_.cols; ++i)
+        for (std::size_t i = 0; i < maze_.cols; ++i)
         {
-            if (line_[i] == set_number && maze_.bottom_walls[row][i] == false)
+            if (line_[i] == static_cast<int>(set_number) && maze_.bottom_walls[row][i] == false)
             {
                 ++count;
             }
@@ -139,10 +139,6 @@ private:
         return count;
     }
 };
-
-// поместить в enum
-#define DEATHCELL 0
-#define ALIVECELL 1
 
 template <>
 class Generator<kCave> final
@@ -158,16 +154,16 @@ public:
 
         std::vector<long> flat_matrix(rows * cols);
         int alive_cell_count = cave.initial_chance / 100.0 * rows * cols;
-        for (int i = 0; i < alive_cell_count; ++i) flat_matrix[i] = ALIVECELL;
+        for (int i = 0; i < alive_cell_count; ++i) flat_matrix[i] = Cell::kAliveCell;
 
         std::random_device rd;
         std::mt19937 gen(rd());
         std::shuffle(flat_matrix.begin(), flat_matrix.end(), gen);
 
         int k = 0;
-        for (int i = 0; i < rows; ++i) 
+        for (unsigned int i = 0; i < rows; ++i) 
         {
-            for (int j = 0; j < cols; ++j) 
+            for (unsigned int j = 0; j < cols; ++j) 
             {
                 cave.cave_data[i][j] = flat_matrix[k++];
             }

@@ -32,7 +32,7 @@ std::vector<Point> PathFinder::FindPath()
 
 bool PathFinder::IsValidPoints_(Point from, Point to)
 {
-    return !(from_.x >= maze_.rows || from_.y >= maze_.cols || to_.x >= maze_.rows || to_.y >= maze_.cols);
+    return !(from.x >= static_cast<int>(maze_.rows) || from.y >= static_cast<int>(maze_.cols) || to.x >= static_cast<int>(maze_.rows) || to.y >= static_cast<int>(maze_.cols));
 }
 
 bool PathFinder::StepWave_()
@@ -66,8 +66,8 @@ bool PathFinder::StepWave_()
 std::vector<Point> PathFinder::MakePath_()
 {
     std::vector<Point> path{to_};
-    std::size_t x_size = length_map_[0].size();
-    std::size_t y_size = length_map_.size();
+    int x_size = length_map_[0].size();
+    int y_size = length_map_.size();
     auto& [row, col] = to_;
 
     while (length_map_[row][col] != 0)

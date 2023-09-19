@@ -32,6 +32,12 @@ enum class Limits
     kMaxOfCols = 50,
 };
 
+enum Cell
+{
+    kAliveCell = 1,
+    kDeathCell = 0
+};
+
 template <TypesOfEntities T>
 struct BasicType final
 {};
@@ -100,13 +106,6 @@ struct BasicType<kCave> final
     unsigned int limit_birth{};
     unsigned int limit_death{};
     unsigned int initial_chance{};
-
-    // struct cell_info
-    // {
-    //     unsigned int limit_birth{};
-    //     unsigned int limit_death{};
-    //     unsigned int initial_chance{};
-    // };
 
     bool IsValid() const
     {

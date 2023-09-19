@@ -44,10 +44,10 @@ CaveType& Cave::GetCave() { return cave_; }
 
 bool Cave::HasNextGeneration() 
 {
-    for (int i = 0; i < cave_.rows; ++i) {
-        for (int j = 0; j < cave_.cols; ++j) {
-            if (cave_.cave_data[i][j] == ALIVECELL && CountAliveNeighbors(i, j) < cave_.limit_death) return true;
-            else if (cave_.cave_data[i][j] == DEATHCELL && CountAliveNeighbors(i, j) > cave_.limit_birth) return true;
+    for (std::size_t i = 0; i < cave_.rows; ++i) {
+        for (std::size_t j = 0; j < cave_.cols; ++j) {
+            if (cave_.cave_data[i][j] == Cell::kAliveCell && CountAliveNeighbors(i, j) < static_cast<int>(cave_.limit_death)) return true;
+            else if (cave_.cave_data[i][j] == Cell::kDeathCell && CountAliveNeighbors(i, j) > static_cast<int>(cave_.limit_birth)) return true;
         }
     }
     return false;
@@ -57,19 +57,19 @@ void Cave::CellularAutomation()
 {
     Cave cave_copy(*this);
 
-    for (int i = 0; i < cave_.rows; ++i) 
+    for (std::size_t i = 0; i < cave_.rows; ++i) 
     {
-        for (int j = 0; j < cave_.cols; ++j) 
+        for (std::size_t j = 0; j < cave_.cols; ++j) 
         {
-            if (cave_.cave_data[i][j] == ALIVECELL) 
+            if (cave_.cave_data[i][j] == Cell::kAliveCell) 
             {
-                if (CountAliveNeighbors(i, j) < cave_.limit_death)
-                cave_copy.cave_.cave_data[i][j] = DEATHCELL;
+                if (CountAliveNeighbors(i, j) < static_cast<int>(cave_.limit_death))
+                cave_copy.cave_.cave_data[i][j] = Cell::kDeathCell;
             } 
-            else if (cave_.cave_data[i][j] == DEATHCELL) 
+            else if (cave_.cave_data[i][j] == Cell::kDeathCell) 
             {
-                if (CountAliveNeighbors(i, j) > cave_.limit_birth)
-                cave_copy.cave_.cave_data[i][j] = ALIVECELL;
+                if (CountAliveNeighbors(i, j) > static_cast<int>(cave_.limit_birth))
+                cave_copy.cave_.cave_data[i][j] = Cell::kAliveCell;
             }
         }
     }
@@ -82,8 +82,8 @@ int Cave::CountAliveNeighbors(int i, int j) {
   for (int row = i - 1; row <= i + 1; ++row) {
     for (int col = j - 1; col <= j + 1; ++col) {
       if (row == i && col == j) continue;
-      if (row < 0 || col < 0 || row >= cave_.rows || col >= cave_.cols ||
-          cave_.cave_data[row][col] == ALIVECELL)
+      if (row < 0 || col < 0 || row >= static_cast<int>(cave_.rows) || col >= static_cast<int>(cave_.cols) ||
+          cave_.cave_data[row][col] == Cell::kAliveCell)
         live_neighbors++;
     }
   }
