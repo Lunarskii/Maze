@@ -26,6 +26,11 @@ void Maze::SaveMaze(std::string file_name)
     MazeFileManager::Save(file_name, maze_);
 }
 
+std::vector<Point> Maze::FindPath(Point from, Point to)
+{
+    return PathFinder(maze_, from, to).FindPath();
+}
+
 MazeType& Maze::GetMaze()
 {
     return maze_;
