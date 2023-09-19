@@ -53,6 +53,9 @@ class Maze {
   MazeType& GetMaze();
 
  private:
+    /**
+ * @brief Stores cave maze's info.
+ */
   MazeType maze_;
 };
 
