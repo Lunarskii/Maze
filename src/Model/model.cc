@@ -31,18 +31,19 @@ void Model::FindPath(Point from, Point to)
 
 void Model::UploadCave(std::string file_name, int limit_birth, int limit_death)
 {
-    cave_->setLimitBirth(limit_birth);
-    cave_->setLimitDeath(limit_death);
+    cave_->SetLimitBirth(limit_birth);
+    cave_->SetLimitDeath(limit_death);
     cave_->UploadCaveFromFile(file_name);
     emit CaveReady(&cave_->GetCave());
 }
 
-void Model::GenerateCave(int limit_birth, int limit_death, int init_chance, int size)
+void Model::GenerateCave(int limit_birth, int limit_death, int init_chance, unsigned int rows, unsigned int cols)
 {
-    cave_->setLimitBirth(limit_birth);
-    cave_->setLimitDeath(limit_death);
-    cave_->setInitialChance(init_chance);
-    cave_->setSize(size);
+    cave_->SetLimitBirth(limit_birth);
+    cave_->SetLimitDeath(limit_death);
+    cave_->SetInitialChance(init_chance);
+    cave_->SetRows(rows);
+    cave_->SetCols(cols);
     cave_->GenerateCave();
     emit CaveReady(&cave_->GetCave());
 }

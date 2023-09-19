@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1108</width>
+    <height>881</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #474953;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButtonMaze">
+    <property name="geometry">
+     <rect>
+      <x>531</x>
+      <y>10</y>
+      <width>90</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:  #40424B;
+color: #B4B4B4;
+border: solid;
+border-radius: 6.5;</string>
+    </property>
+    <property name="text">
+     <string>Maze</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroupAppMode</string>
+    </attribute>
+   </widget>
+   <widget class="QPushButton" name="pushButtonCave">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>10</y>
+      <width>90</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:  #4E505B;
+color: #B4B4B4;
+border: solid;
+border-radius: 6.5;</string>
+    </property>
+    <property name="text">
+     <string>Cave</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroupAppMode</string>
+    </attribute>
+   </widget>
+   <widget class="QTabWidget" name="tabWidgetMazeNCave">
+    <property name="geometry">
+     <rect>
+      <x>522</x>
+      <y>10</y>
+      <width>211</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px;</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>90</y>
+        <width>140</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Number of rows</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>140</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Number of columns</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="generateMazeButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #474953;
+	background-color: #D9D9D9;
+	border: 1px solid #393C46;
+	border-radius: 4;
+}
+QPushButton:hover {
+	background-color: #BDBDBD;
+}</string>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saveMazeButton">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>150</y>
+        <width>50</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #474953;
+	background-color: #D9D9D9;
+	border: 1px solid #393C46;
+	border-radius: 5;
+}
+QPushButton:hover {
+	background-color: #BDBDBD;
+}</string>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="openMazeButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #474953;
+	background-color: #D9D9D9;
+	border: 1px solid #393C46;
+	border-radius: 4;
+}
+QPushButton:hover {
+	background-color: #BDBDBD;
+}</string>
+      </property>
+      <property name="text">
+       <string>Open file</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="mazeRows">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>86</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="value">
+       <number>4</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="mazeCols">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>116</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="value">
+       <number>4</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>39</y>
+        <width>200</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Generation of a perfect
+maze</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>39</y>
+        <width>160</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Cell parameters</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>64</y>
+        <width>118</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Birth limit</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>94</y>
+        <width>118</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Death limit</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>124</y>
+        <width>140</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Starting init</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>315</y>
+        <width>118</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonNextStep">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>370</y>
+        <width>48</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: #474953;
+	background-color: #D9D9D9;
+	border-radius: 3;
+}
+QPushButton:pressed
+{
+	color: #474953;
+	background-color: #BDBDBD;
+	border-radius: 3;
+}</string>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Delay</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>340</y>
+        <width>58</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #D2D2D2;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;
+</string>
+      </property>
+      <property name="text">
+       <string>ms</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>187</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Size</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonStart">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>370</y>
+        <width>44</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: #474953;
+	background-color: #D9D9D9;
+	border-radius: 3;
+}
+QPushButton:pressed
+{
+	color: #474953;
+	background-color: #BDBDBD;
+	border-radius: 4;
+}</string>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonStop">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>400</y>
+        <width>44</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton
+{
+	color: #474953;
+	background-color: #D9D9D9;
+	border-radius: 3;
+}
+QPushButton:pressed
+{
+	color: #474953;
+	background-color: #BDBDBD;
+	border-radius: 4;
+}</string>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>200</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Generate a random cave</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>255</y>
+        <width>150</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>Load a cave</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonGenerateCave">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>220</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #474953;
+	background-color: #D9D9D9;
+	border: 1px solid #393C46;
+	border-radius: 4;
+}
+QPushButton:hover {
+	background-color: #BDBDBD;
+}</string>
+      </property>
+      <property name="text">
+       <string>Generate</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonOpenCave">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>280</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	color: #474953;
+	background-color: #D9D9D9;
+	border: 1px solid #393C46;
+	border-radius: 4;
+}
+QPushButton:hover {
+	background-color: #BDBDBD;
+}</string>
+      </property>
+      <property name="text">
+       <string>Open file</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveBirthLimit">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>60</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="maximum">
+       <number>7</number>
+      </property>
+      <property name="value">
+       <number>4</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveStartInit">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>120</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="value">
+       <number>40</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveDelay">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>337</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>1000</number>
+      </property>
+      <property name="singleStep">
+       <number>10</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveDeathLimit">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>90</y>
+        <width>44</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="maximum">
+       <number>7</number>
+      </property>
+      <property name="value">
+       <number>3</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveRows">
+      <property name="geometry">
+       <rect>
+        <x>66</x>
+        <y>185</y>
+        <width>40</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="value">
+       <number>50</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="caveCols">
+      <property name="geometry">
+       <rect>
+        <x>118</x>
+        <y>185</y>
+        <width>40</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #C8C8C8;
+background-color: #40424B;
+border: 1px solid #393C46;
+border-radius: 4;</string>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="value">
+       <number>50</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>108</x>
+        <y>185</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #B4B4B4;
+background-color: rgba( 255, 255, 255, 0% );
+border: 1px;</string>
+      </property>
+      <property name="text">
+       <string>x</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidgetDisplay">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>500</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px;</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_9">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>521</x>
+      <y>0</y>
+      <width>2</width>
+      <height>520</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>tabWidgetMazeNCave</zorder>
+   <zorder>pushButtonMaze</zorder>
+   <zorder>pushButtonCave</zorder>
+   <zorder>tabWidgetDisplay</zorder>
+   <zorder>label_6</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupAppMode"/>
+ </buttongroups>
+</ui>

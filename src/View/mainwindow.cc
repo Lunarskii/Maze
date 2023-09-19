@@ -68,7 +68,6 @@ void MainWindow::EmitSaveMaze_()
     }
 }
 
-// После генерации пещеры эволюция неправильно работает
 void MainWindow::EmitUploadCave_() 
 {
     QString file_path = QFileDialog::getOpenFileName(this, "Select cave", "./", "Cave files (*.txt)");
@@ -86,10 +85,9 @@ void MainWindow::EmitGenerateCave_()
     int limit_birth = ui_->caveBirthLimit->value();
     int limit_death = ui_->caveDeathLimit->value();
     int init_chance = ui_->caveStartInit->value();
-
-    // int init_chance = ui->lineEditCaveInitChance->text().toInt();
-    // int size = ui->lineEditCaveSize->text().toInt();
-    // emit GenerateCave(limit_birth, limit_death, init_chance, size);
+    unsigned int rows = ui_->caveRows->value();
+    unsigned int cols = ui_->caveCols->value();
+    emit GenerateCave(limit_birth, limit_death, init_chance, rows, cols);
 }
 
 void MainWindow::CaveStartGeneration_() 

@@ -18,4 +18,5 @@ void MainWindow::InitView_()
     });
     connect(ui_->pushButtonOpenCave, &QPushButton::clicked, this, &MainWindow::EmitUploadCave_);
     connect(ui_->pushButtonStart, &QPushButton::clicked, this, &MainWindow::CaveStartGeneration_);
+    connect(ui_->pushButtonGenerateCave, &QPushButton::clicked, this, &MainWindow::EmitGenerateCave_);
 }
