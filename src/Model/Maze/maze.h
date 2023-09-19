@@ -17,8 +17,6 @@ public:
 
 private:
     MazeType maze_;
-    std::vector<Point> path_;
 };
-
 
 #endif //  A1_MAZE_MODEL_MAZE_MAZE_H_
