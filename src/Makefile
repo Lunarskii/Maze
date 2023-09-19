@@ -23,7 +23,7 @@ uninstall:
 	rm -rf build
 
 clean:
-	rm -rf valgrind.txt 3DViewer.tar.gz
+	rm -rf valgrind.txt $(APP_NAME).tar.gz
 	rm -rf test
 
 dvi:
@@ -37,7 +37,7 @@ launch:
 	$(OPEN)
 
 tests:
-	g++ tests/*.cc model/*.cc $(CFLAGS) $(LDFLAGS) -o test
+	g++ tests/*.cc Model/Cave/*.cc Model/Maze/*.cc $(CFLAGS) $(LDFLAGS) -o test
 	./test
 
 style:
