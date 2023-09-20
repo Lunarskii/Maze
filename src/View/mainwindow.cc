@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 
+namespace s21
+{
+
 MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_(new Ui::MainWindow)
@@ -113,3 +116,4 @@ void MainWindow::CaveStopGeneration_()
     }
 }
 
+} // namespace s21

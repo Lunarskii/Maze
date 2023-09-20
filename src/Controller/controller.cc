@@ -1,5 +1,8 @@
 #include "controller.h"
 
+namespace s21
+{
+
 Controller::Controller(MainWindow* v, Model* m)
     : model_(m)
     , view_(v)
@@ -20,3 +23,5 @@ Controller::Controller(MainWindow* v, Model* m)
     connect(model_, &Model::CaveReady, view_, &MainWindow::DrawCave);
     connect(model_, &Model::GenerationIsFinished, view_, &MainWindow::CaveStopGeneration_);
 }
+
+} // namespace s21

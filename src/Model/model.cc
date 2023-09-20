@@ -1,5 +1,8 @@
 #include "model.h"
 
+namespace s21
+{
+
 typename Model::Model& Model::GetInstance()
 {
     static Model instance;
@@ -8,20 +11,41 @@ typename Model::Model& Model::GetInstance()
 
 void Model::UploadMaze(std::string file_name)
 {
-    maze_->UploadMazeFromFile(file_name);
-    emit MazeReady(&maze_->GetMaze());
+    try
+    {      
+        maze_->UploadMazeFromFile(file_name);
+        emit MazeReady(&maze_->GetMaze());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Model::GenerateMaze(unsigned int rows, unsigned int cols)
 {
-    maze_->GenerateMaze(rows, cols);
-    emit MazeReady(&maze_->GetMaze());
+    try
+    {
+        maze_->GenerateMaze(rows, cols);
+        emit MazeReady(&maze_->GetMaze());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Model::SaveMaze(std::string file_name)
 {
-    maze_->SaveMaze(file_name);
-    emit MazeIsSaved();
+    try
+    {
+        maze_->SaveMaze(file_name);
+        emit MazeIsSaved();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Model::FindPath(Point from, Point to)
@@ -31,19 +55,33 @@ void Model::FindPath(Point from, Point to)
 
 void Model::UploadCave(std::string file_name, int limit_birth, int limit_death)
 {
-    cave_->SetLimitBirth(limit_birth);
-    cave_->SetLimitDeath(limit_death);
-    cave_->UploadCaveFromFile(file_name);
-    emit CaveReady(&cave_->GetCave());
+    try
+    {
+        cave_->SetLimitBirth(limit_birth);
+        cave_->SetLimitDeath(limit_death);
+        cave_->UploadCaveFromFile(file_name);
+        emit CaveReady(&cave_->GetCave());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Model::GenerateCave(int init_chance, unsigned int rows, unsigned int cols)
 {
-    cave_->SetInitialChance(init_chance);
-    cave_->SetRows(rows);
-    cave_->SetCols(cols);
-    cave_->GenerateCave();
-    emit CaveReady(&cave_->GetCave());
+    try
+    {
+        cave_->SetInitialChance(init_chance);
+        cave_->SetRows(rows);
+        cave_->SetCols(cols);
+        cave_->GenerateCave();
+        emit CaveReady(&cave_->GetCave());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Model::NextGeneration(int limit_birth, int limit_death)
@@ -58,3 +96,5 @@ void Model::NextGeneration(int limit_birth, int limit_death)
         emit GenerationIsFinished();
     }
 }
+
+} // namespace s21

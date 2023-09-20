@@ -11,6 +11,9 @@
 #include "../file_manager.h"
 #include "../generator.h"
 
+namespace s21
+{
+
 /**
  * @class Cave
  * @brief Сlass for generating, loading from a file, and evolving caves
@@ -97,5 +100,7 @@ class Cave {
    */
   CaveType cave_;
 };
+
+} // namespace s21
 
 #endif  // A1_MAZE_MODEL_CAVE_CAVE_H_

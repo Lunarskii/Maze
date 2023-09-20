@@ -6,6 +6,9 @@
 #include <algorithm>
 #include "../data_types.h"
 
+namespace s21
+{
+
 class PathFinder
 {
 public:
@@ -27,5 +30,7 @@ private:
     std::vector<Point> MakePath_();
     std::vector<SidePoint> GetVectorOfMoves_(int row, int col);
 };
+
+} // namespace s21
 
 #endif  // A1_MAZE_MODEL_MAZE_PATH_FINDER_H_

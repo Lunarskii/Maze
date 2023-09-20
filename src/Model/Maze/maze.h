@@ -5,6 +5,9 @@
 #include "../generator.h"
 #include "path_finder.h"
 
+namespace s21
+{
+
 /**
  * @class Maze
  * @brief Сlass for processing mazes
@@ -58,5 +61,7 @@ class Maze {
  */
   MazeType maze_;
 };
+
+} // namespace s21
 
 #endif  //  A1_MAZE_MODEL_MAZE_MAZE_H_

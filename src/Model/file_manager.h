@@ -6,6 +6,9 @@
 #include <vector>
 #include "data_types.h"
 
+namespace s21
+{
+
 template <TypesOfEntities T>
 class FileManager final {};
 
@@ -19,30 +22,28 @@ public:
         std::string line;
         std::ifstream file(file_name);
 
-        if (!file.is_open())
+        if (file.is_open())
         {
-            throw std::exception(); // "The file cannot be opened"
-        }
-
-        file >> maze.rows >> maze.cols;
-        maze.right_walls.resize(maze.rows, std::vector<long>(maze.cols));
-        maze.bottom_walls.resize(maze.rows, std::vector<long>(maze.cols));
-        for (auto& i : maze.right_walls)
-        {
-            for (auto& j : i)
+            file >> maze.rows >> maze.cols;
+            maze.right_walls.resize(maze.rows, std::vector<long>(maze.cols));
+            maze.bottom_walls.resize(maze.rows, std::vector<long>(maze.cols));
+            for (auto& i : maze.right_walls)
             {
-                file >> j;
+                for (auto& j : i)
+                {
+                    file >> j;
+                }
             }
-        }
-        std::getline(file, line);
-        for (auto& i : maze.bottom_walls)
-        {
-            for (auto& j : i)
+            std::getline(file, line);
+            for (auto& i : maze.bottom_walls)
             {
-                file >> j;
+                for (auto& j : i)
+                {
+                    file >> j;
+                }
             }
+            file.close();
         }
-        file.close();
 
         return maze;
     }
@@ -51,16 +52,14 @@ public:
     {
         std::ofstream file(file_name);
 
-        if (!file.is_open())
+        if (file.is_open())
         {
-            throw std::exception(); // "The file cannot be saved"
+            file << maze.rows << " " << maze.cols;
+            WriteDataToFile_(file, maze.right_walls);
+            file << "\n";
+            WriteDataToFile_(file, maze.bottom_walls);
+            file.close();
         }
-
-        file << maze.rows << " " << maze.cols;
-        WriteDataToFile_(file, maze.right_walls);
-        file << "\n";
-        WriteDataToFile_(file, maze.bottom_walls);
-        file.close();
     }
 
 private:
@@ -86,21 +85,19 @@ public:
         CaveType cave;
         std::ifstream file(file_name);
 
-        if (!file.is_open())
+        if (file.is_open())
         {
-            throw std::exception(); // "The file cannot be opened"
-        }
-
-        file >> cave.rows >> cave.cols;
-        cave.cave_data.resize(cave.rows, std::vector<long>(cave.cols));
-        for (auto& i : cave.cave_data)
-        {
-            for (auto& j : i)
+            file >> cave.rows >> cave.cols;
+            cave.cave_data.resize(cave.rows, std::vector<long>(cave.cols));
+            for (auto& i : cave.cave_data)
             {
-                file >> j;
+                for (auto& j : i)
+                {
+                    file >> j;
+                }
             }
+            file.close();
         }
-        file.close();
 
         return cave;
     }
@@ -108,5 +105,7 @@ public:
 
 using MazeFileManager = FileManager<kMaze>;
 using CaveFileManager = FileManager<kCave>;
+
+} // namespace s21
 
 #endif  // A1_MAZE_MODEL_FILE_MANAGER_H_

@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 
+namespace s21
+{
+
 void MainWindow::HideTabs_() 
 {
     ui_->tabWidgetMazeNCave->tabBar()->hide();
@@ -27,11 +30,4 @@ void MainWindow::SwitchApplicationTab_(QAbstractButton *button)
     }
 }
 
-//void MainWindow::on_pushButtonAuto_clicked()
-//{
-//    QString temp = ui_->pushButtonAuto->text();
-//    ui_->pushButtonAuto->setText(ui_->pushButtonStepByStep->text());
-//    ui_->pushButtonStepByStep->setText(temp);
-//    ui_->tabWidgetItCave->setCurrentIndex((ui_->tabWidgetItCave->currentIndex() + 1) % 2);
-//}
-
+} // namespace s21

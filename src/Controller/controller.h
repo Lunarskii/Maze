@@ -4,6 +4,9 @@
 #include "../Model/model.h"
 #include "../View/mainwindow.h"
 
+namespace s21
+{
+
 class Controller : public QObject
 {
     Q_OBJECT
@@ -15,5 +18,7 @@ private:
     Model* model_;
     MainWindow* view_;
 };
+
+} // namespace s21
 
 #endif //  A1_MAZE_CONTROLLER_CONTROLLER_H_

@@ -18,6 +18,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+namespace s21
+{
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -48,8 +51,6 @@ private slots:
     void EmitUploadMaze_();
     void EmitGenerateMaze_();
     void EmitSaveMaze_();
-    // void on_pushButtonAuto_clicked();
-
     void EmitUploadCave_();
     void EmitGenerateCave_();
     void CaveStartGeneration_();
@@ -62,6 +63,8 @@ private:
 
     void InitView_();
 };
+
+} // namespace s21
 
 #endif  // A1_MAZE_VIEW_MAINWINDOW_H_
 

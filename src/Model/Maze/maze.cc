@@ -1,5 +1,8 @@
 #include "maze.h"
 
+namespace s21
+{
+
 typename Maze::Maze& Maze::GetInstance() 
 {
     static Maze instance;
@@ -12,7 +15,7 @@ void Maze::UploadMazeFromFile(std::string file_name)
 
     if (!maze_.IsValid())
     {
-        throw std::exception();
+        throw std::runtime_error("The model is not loaded");
     }
 }
 
@@ -35,3 +38,5 @@ MazeType& Maze::GetMaze()
 {
     return maze_;
 }
+
+} // namespace s21

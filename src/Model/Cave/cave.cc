@@ -1,5 +1,8 @@
 #include "cave.h"
 
+namespace s21
+{
+
 typename Cave::Cave& Cave::GetInstance() {
   static Cave instance;
   return instance;
@@ -32,8 +35,9 @@ void Cave::SetRows(int rows) {
 void Cave::UploadCaveFromFile(const std::string& file_name) {
   cave_ = CaveFileManager::Upload(file_name);
 
-  if (!cave_.IsValid()) {
-    throw std::exception();
+  if (!cave_.IsValid()) 
+  {
+    throw std::runtime_error("The model is not loaded");
   }
 }
 
@@ -84,3 +88,5 @@ int Cave::CountAliveNeighbors(int i, int j) {
   }
   return live_neighbors;
 }
+
+} // namespace s21

@@ -3,6 +3,9 @@
 
 #include <vector>
 
+namespace s21
+{
+
 struct Point final 
 {
     int x;
@@ -53,11 +56,11 @@ struct BasicType<kMaze> final
 
     bool IsValid() const
     {
-        if (rows < static_cast<std::size_t>(Limits::kMinOfRows) || rows > static_cast<std::size_t>(Limits::kMaxOfRows))
+        if (right_walls.empty() || bottom_walls.empty())
         {
             return false;
-        }
-        else if (cols < static_cast<std::size_t>(Limits::kMinOfCols) || cols > static_cast<std::size_t>(Limits::kMaxOfCols))
+        } 
+        else if (rows > static_cast<std::size_t>(Limits::kMaxOfRows) || cols > static_cast<std::size_t>(Limits::kMaxOfCols))
         {
             return false;
         }
@@ -109,11 +112,11 @@ struct BasicType<kCave> final
 
     bool IsValid() const
     {
-        if (rows < static_cast<std::size_t>(Limits::kMinOfRows) || rows > static_cast<std::size_t>(Limits::kMaxOfRows))
+        if (cave_data.empty())
         {
             return false;
         }
-        else if (cols < static_cast<std::size_t>(Limits::kMinOfCols) || cols > static_cast<std::size_t>(Limits::kMaxOfCols))
+        else if (rows > static_cast<std::size_t>(Limits::kMaxOfRows) || cols > static_cast<std::size_t>(Limits::kMaxOfCols))
         {
             return false;
         }
@@ -142,5 +145,7 @@ struct BasicType<kCave> final
 
 using MazeType = BasicType<kMaze>;
 using CaveType = BasicType<kCave>;
+
+} // namespace s21
 
 #endif  // A1_MAZE_MODEL_DATA_TYPES_H_

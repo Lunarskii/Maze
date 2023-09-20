@@ -6,6 +6,9 @@
 #include <algorithm>
 #include "data_types.h"
 
+namespace s21
+{
+
 template <TypesOfEntities T>
 class Generator final {};
 
@@ -175,5 +178,7 @@ public:
 
 using MazeGenerator = Generator<kMaze>;
 using CaveGenerator = Generator<kCave>;
+
+} // namespace s21
 
 #endif  // A1_MAZE_MODEL_GENERATOR_H_

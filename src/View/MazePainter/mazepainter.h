@@ -7,6 +7,9 @@
 #include <cmath>
 #include "../../Model/data_types.h"
 
+namespace s21
+{
+
 class MazePainter : public QWidget
 {
     Q_OBJECT
@@ -44,5 +47,7 @@ private:
     bool left_btn_pressed_{ false };
     bool right_btn_pressed_{ false };
 };
+
+} // namespace s21
 
 #endif  // A1_MAZE_VIEW_MAZEPAINTER_MAZEPAINTER_H_

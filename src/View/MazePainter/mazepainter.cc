@@ -1,5 +1,8 @@
 #include "mazepainter.h"
 
+namespace s21
+{
+
 MazePainter::MazePainter(QWidget* parent)
     : QWidget(parent)
     , painter(new QPainter) 
@@ -182,3 +185,5 @@ void MazePainter::mousePressEvent(QMouseEvent *event) {
         emit FindPath(Point{cell_y_left, cell_x_left}, Point{cell_y_right, cell_x_right});
     }
 }
+
+} // namespace s21

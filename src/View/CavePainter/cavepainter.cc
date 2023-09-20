@@ -1,5 +1,8 @@
 #include "cavepainter.h"
 
+namespace s21
+{
+
 CavePainter::CavePainter(QWidget* parent) 
     : QWidget(parent)
 {}
@@ -40,3 +43,5 @@ void CavePainter::paintEvent(QPaintEvent*)
         painter.end();
     }
 }
+
+} // namespace s21

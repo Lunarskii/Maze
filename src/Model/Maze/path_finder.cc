@@ -1,5 +1,8 @@
 #include "path_finder.h"
 
+namespace s21
+{
+
 PathFinder::PathFinder(const MazeType& maze, Point from, Point to)
     : maze_(maze)
     , from_(from)
@@ -32,7 +35,8 @@ std::vector<Point> PathFinder::FindPath()
 
 bool PathFinder::IsValidPoints_(Point from, Point to)
 {
-    return !(from.x >= static_cast<int>(maze_.rows) || from.y >= static_cast<int>(maze_.cols) || to.x >= static_cast<int>(maze_.rows) || to.y >= static_cast<int>(maze_.cols));
+    return !(from.x >= static_cast<int>(maze_.rows) || from.y >= static_cast<int>(maze_.cols) || from.x < 0 || from.y < 0
+            || to.x >= static_cast<int>(maze_.rows) || to.y >= static_cast<int>(maze_.cols) || to.x < 0 || to.y < 0);
 }
 
 bool PathFinder::StepWave_()
@@ -88,10 +92,6 @@ std::vector<Point> PathFinder::MakePath_()
         {
             ++row;
         }
-        else
-        {
-            return {};
-        }
         path.emplace_back(to_);
     }
 
@@ -115,3 +115,5 @@ std::vector<SidePoint> PathFinder::GetVectorOfMoves_(int row, int col)
 
     return points;
 }
+
+} // namespace s21

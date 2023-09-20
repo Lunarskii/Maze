@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 
+namespace s21
+{
+
 void MainWindow::InitView_()
 {
     connect(ui_->buttonGroupAppMode, SIGNAL(buttonClicked(QAbstractButton *)), this, SLOT(SwitchApplicationTab_(QAbstractButton *)));
@@ -22,3 +25,5 @@ void MainWindow::InitView_()
     connect(ui_->pushButtonStart, &QPushButton::clicked, this, &MainWindow::CaveStartGeneration_);
     connect(ui_->pushButtonGenerateCave, &QPushButton::clicked, this, &MainWindow::EmitGenerateCave_);
 }
+
+} // namespace s21

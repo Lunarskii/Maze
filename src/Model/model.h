@@ -5,6 +5,9 @@
 #include "Cave/cave.h"
 #include <QObject>
 
+namespace s21
+{
+
 class Model : public QObject
 {
     Q_OBJECT
@@ -32,6 +35,8 @@ private:
     Maze* maze_ { &Maze::GetInstance() };
     Cave* cave_ { &Cave::GetInstance() };
 };
+
+} // namespace s21
 
 #endif //  A1_MAZE_MODEL_MODEL_H
 
