@@ -9,13 +9,26 @@
 namespace s21
 {
 
+/**
+* @class FileManager
+* @brief Template class for saving and downloading caves and mazes from a file.
+*/
 template <TypesOfEntities T>
 class FileManager final {};
 
 template <>
+/**
+ * @class FileManager<kMaze>
+ * @brief Class for working with files (uploading and saving a maze to a file).
+ */
 class FileManager<kMaze> final
 {
 public:
+    /**
+ * @brief Method for loading a maze from a file.
+     * @return Returns the maze read from the file.
+     * @param file_name Path to the file.
+ */
     static MazeType Upload(std::string file_name)
     {
         MazeType maze;
@@ -48,6 +61,11 @@ public:
         return maze;
     }
 
+    /**
+* @brief Method for saving the maze to a file.
+ * @param file_name Name of the file where the maze will be saved.
+ * @param maze Reference to the maze to be saved
+*/
     static void Save(std::string file_name, MazeType& maze)
     {
         std::ofstream file(file_name);
@@ -76,10 +94,19 @@ private:
     }
 };
 
+/**
+ * @class FileManager<kCave>
+ * @brief Class for working with files (loading a cave).
+ */
 template <>
 class FileManager<kCave> final
 {
 public:
+    /**
+* @brief Method for loading a cave from a file.
+ * @return Returns the cave read from the file.
+ * @param file_name Path to the file.
+*/
     static CaveType Upload(std::string file_name)
     {
         CaveType cave;

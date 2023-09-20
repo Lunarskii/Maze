@@ -25,9 +25,12 @@ uninstall:
 clean:
 	rm -rf valgrind.txt $(APP_NAME).tar.gz
 	rm -rf test
+	rm -rf html latex
 
 dvi:
-	open README.md
+	doxygen Doxyfile
+	open html/index.html
+
 
 dist:
 	$(MAKE) install
