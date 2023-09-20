@@ -2,3 +2,5 @@
 
 #include "../Model/Cave/cave.h"
 #include "../Model/Maze/maze.h"
+
+using namespace s21;
