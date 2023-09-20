@@ -27,7 +27,9 @@ clean:
 	rm -rf test
 
 dvi:
-	open README.md
+	doxygen Doxyfile
+	open html/index.html
+
 
 dist:
 	$(MAKE) install
