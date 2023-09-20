@@ -5,7 +5,10 @@
 
 namespace s21
 {
-
+/**
+ * @struct Point
+ * @brief Simple structure for representing a point
+ */
 struct Point final 
 {
     int x;
@@ -14,6 +17,10 @@ struct Point final
     Point(int x = 0, int y = 0) : x(x), y(y){};
 };
 
+/**
+ * @struct SidePoint
+ * @brief Simple structure for representing a side point
+ */
 struct SidePoint final 
 {
     int x;
@@ -21,12 +28,20 @@ struct SidePoint final
     long value;
 };
 
+/**
+ * @enum TypesOfEntities
+ * @brief Enumeration for the used entities
+ */
 enum TypesOfEntities
 {
     kMaze = 1,
     kCave = 2
 };
 
+/**
+ * @enum Limits
+ * @brief An enumeration for the limits of the minimum and maximum size of the maze and cave.
+ */
 enum class Limits
 {
     kMinOfRows = 0,
@@ -35,16 +50,28 @@ enum class Limits
     kMaxOfCols = 50,
 };
 
+/**
+ * @enum Cell
+ * @brief Enumeration for the state of the cave cells.
+ */
 enum Cell
 {
     kAliveCell = 1,
     kDeathCell = 0
 };
 
+/**
+ * @struct BasicType<>
+ * @brief Basic type for mazes and caves.
+ */
 template <TypesOfEntities T>
 struct BasicType final
 {};
 
+/**
+ * @struct BasicType<kMaze>
+ * @brief Basic type for mazes.
+ */
 template <>
 struct BasicType<kMaze> final
 {
@@ -99,6 +126,10 @@ struct BasicType<kMaze> final
     }
 };
 
+/**
+ * @struct BasicType<kCave>
+ * @brief Basic type for caves.
+ */
 template <>
 struct BasicType<kCave> final
 {
